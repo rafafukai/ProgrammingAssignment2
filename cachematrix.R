@@ -1,17 +1,19 @@
 ## R. Fukai - 11/23/2014
 ## Programming Assignment 2 // DataScience - R Programming
+
 ## ----------------------------------------------------------------------------------------------
+
 ## makeCacheMatrix: This function creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
     set <- function(y) {
-        x <<- y
-        m << NULL
+        x <<- y     ## sets matrix reference variable
+        m <<- NULL  ## clears matrix results variable
     }
-    get <- function() x
-    setInvMatrix <- function(solve) m <<- solve  ## solve functions returns the inverse matrix
-    getInvMatrix <- function() m
+    get <- function() x  ## gets cached reference matrix
+    setInvMatrix <- function(solve) m <<- solve  ## solve functions and sets results variable with the inverse matrix
+    getInvMatrix <- function() m                 ## returns results matrix variable
     list (set = set
         , get = get
         , setInvMatrix = setInvMatrix
@@ -28,5 +30,16 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  m <- x$getInvMatrix()
+  if(!is.null(m))    ## checks if invert matrix is cached
+  {
+    message("getting results from cached matrix")
+    return(m)        ## returns inverted matrix to console
+  }
+  ## if not cached, get matrix and solve
+  dta <- x$get()     ## stores matrix in variable dta
+  m   <- solve(dta)  ## solve invert matrix
+  x$setInvMatrix(m)  ## caches invert matrix
+  m                  ## returns inverted matrix to console
+  
 }
