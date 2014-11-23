@@ -6,13 +6,13 @@
 ## makeCacheMatrix: This function creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
-    m <- NULL
+    m <- NULL       ## defines variable (scope: this function)
     set <- function(y) {
-        x <<- y     ## sets matrix reference variable
-        m <<- NULL  ## clears matrix results variable
+        x <<- y     ## sets matrix reference variable (scope: makeCacheMatrix function)
+        m <<- NULL  ## clears matrix results variable (scope: makeCacheMatrix function)
     }
     get <- function() x  ## gets cached reference matrix
-    setInvMatrix <- function(solve) m <<- solve  ## solve functions and sets results variable with the inverse matrix
+    setInvMatrix <- function(solve) m <<- solve  ## solve functions and sets results variable with the inverse matrix (scope: makeCacheMatrix function)
     getInvMatrix <- function() m                 ## returns results matrix variable
     list (set = set
         , get = get
