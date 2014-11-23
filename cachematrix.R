@@ -1,7 +1,7 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## R. Fukai - 11/23/2014
+## Programming Assignment 2 // DataScience - R Programming
+## ----------------------------------------------------------------------------------------------
+## makeCacheMatrix: This function creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
 
